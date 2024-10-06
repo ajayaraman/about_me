@@ -1,12 +1,6 @@
-use rocket::{get, launch, routes, fs::NamedFile};
-use std::path::Path;
-
-#[get("/")]
-async fn index() -> Option<NamedFile> {
-    NamedFile::open(Path::new("static/index.html")).await.ok()
-}
+use rocket::{launch, routes};
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index])
+    rocket::build().mount("/", routes![about_me::index])
 }
